@@ -9,13 +9,6 @@ package roerobotyngve;
  *
  * @author Yngve
  */
-public class RoeRobotYngve {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class RoeAnalyser {
     
 }
