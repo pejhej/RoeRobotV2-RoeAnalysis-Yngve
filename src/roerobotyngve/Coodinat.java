@@ -15,7 +15,8 @@ class Coodinat {
     private int xCoord;
     private int yCoord;
     private int zCoord;
-
+    
+    
     public Coodinat(int xCoord, int yCoord, int zCoord) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;

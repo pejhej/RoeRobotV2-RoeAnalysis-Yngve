@@ -86,7 +86,11 @@ public class RoeAnalyserDevice {
         // Generate a Calibration command. 
         // Send cmd. 
     }
-
+    
+    
+    /**
+     * 
+     */
     public void toggleLight() {
         //Toggle light
     }
