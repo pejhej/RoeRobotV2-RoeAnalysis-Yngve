@@ -10,5 +10,5 @@ package roerobotyngve;
  * @author Yngve
  */
 public class RoeAnalyser {
-    
+    private int test; 
 }
