@@ -13,6 +13,9 @@ import java.util.ArrayList;
  */
 public class RoeAnalyserDevice {
 
+    
+    
+    
     /**
      * Move mathod used for moving the end-effector to a spesific X,Y,Z coodinat
      *
