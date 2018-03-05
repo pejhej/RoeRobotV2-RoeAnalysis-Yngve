@@ -10,14 +10,14 @@ package roerobotyngve;
  *
  * @author Yngve
  */
-class Coodinat {
+class Coordinate {
 
     private int xCoord;
     private int yCoord;
     private int zCoord;
     
     
-    public Coodinat(int xCoord, int yCoord, int zCoord) {
+    public Coordinate(int xCoord, int yCoord, int zCoord) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.zCoord = zCoord;

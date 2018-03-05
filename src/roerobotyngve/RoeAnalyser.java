@@ -11,32 +11,55 @@ package roerobotyngve;
  */
 public class RoeAnalyser {
 
-    private RoeAnalyserDevice roeAnalyser;
-
-    public void RoeAnalyser() {
-        this.roeAnalyser = new RoeAnalyserDevice();
+     //State enum for the switchcase
+    private enum State
+    {
+        Calibrate,
+        Running,
+        Waiting;
     }
 
-    private void cycleCase(String state) {
-        switch (state.toLowerCase()) {
+    
+    
+    private RoeAnalyserDevice roeAnalyser;
+    //State enum
+    private State state;
+    
+    //Flag to remember if the tray is open or not
+    private boolean trayOpen;
+   //The amount of pictures to be taken
+    private int nrOfPicturesToBeTaken;
+    private int currentTray;
+    
+    public void RoeAnalyser() {
+        this.roeAnalyser = new RoeAnalyserDevice();
+        trayOpen = false;
+        currentTray = 1;
+    }
+
+    private void cycleCase(State state) {
+        switch (state) {
             // Sends calibatrion cmd. 
-            case "calibrate":
+            case Calibrate:
                 // Call on calibrate method in roeAnalyser
                 // Call on nrOfTrays from raoAnalyser.                
                 this.roeAnalyser.calibrate();
             // Starts the calibration cycle
 
-            case "startcycle":
+            case Running:
                 //Find number of trays in the rack. 
                 int nrOfTrays = roeAnalyser.getNumberOfTrays();
-                // For each number in the rack run a roe removal sequense. {  
-                for (int i = 1; i > nrOfTrays; i++) {                    
+                // For each number in the rack run a roe removal sequense. {
+                  
+                for (int i = currentTray; i > nrOfTrays; i++) {
+                    this.currentTray = i;
                     // Open one tray
-                    this.roeAnalyser.openTray(i);                
+                    this.roeAnalyser.openTray(i);  
+                    this.trayOpen = true;
                     // Find the number of pictures needed to be taken for covering all coordinates in a tray. 
-                    int nrOfPucturesToBeTaken = 1;
+                    nrOfPicturesToBeTaken = 1;
                     //For each picture needed to be taken (Frames) ...
-                    for (int j = 1; j > nrOfPucturesToBeTaken; i++){                     
+                    for (int j = 1; j > nrOfPicturesToBeTaken; i++){                     
                         //  Take a picture. 
                         this.roeAnalyser.takePicture(j);
                         //      Find dead roe in picture. 
@@ -46,10 +69,24 @@ public class RoeAnalyser {
                     }
                     // Close the tray. 
                     this.roeAnalyser.closeTray(i);
-                    
-
+                    this.trayOpen = false;
                 }
-        }
+                
+                currentTray = 1;
+                break;
+            case Waiting:
+                //Wait for interval
+                break;
+        }   
+    }
+    
+    
+    /**
+     * Start the robot
+     */
+    public void startRobot()
+    {
+        state = State.Running;
     }
 
 }

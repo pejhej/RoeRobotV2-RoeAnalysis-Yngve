@@ -21,7 +21,7 @@ public class RoeAnalyserDevice {
      *
      * @param coordinat in a global coordiunat system.
      */
-    public void move(Coodinat coordinat) {
+    public void move(Coordinate coordinat) {
         //TODO: what necessary form moving the end-effector to a spesific coordinat. 
     }
 
@@ -74,7 +74,7 @@ public class RoeAnalyserDevice {
      *
      * @param coordinates Arraylist of coordinates to be removed from.
      */
-    public void removeRoe(ArrayList<Coodinat> coordinates) {
+    public void removeRoe(ArrayList<Coordinate> coordinates) {
         // TODO: Fill method
         // 1. Generate a move cmd to the first coordinat.
         // 2. send cmd. 
